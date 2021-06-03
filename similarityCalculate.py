@@ -3,11 +3,11 @@ from average_light import aver
 
 
 def dHash(img):
-    img = cv2.resize(img, (9, 8), interpolation=cv2.INTER_CUBIC)
+    img = cv2.resize(img, (10, 9), interpolation=cv2.INTER_CUBIC)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     hash_str = ''
-    for i in range(8):
-        for j in range(8):
+    for i in range(9):
+        for j in range(9):
             if gray[i, j] > gray[i, j + 1]:
                 hash_str = hash_str + '1'
             else:
@@ -29,8 +29,6 @@ def cmpHash(hash1, hash2):
 def cal(path1, path2):
     img1 = cv2.imread(path1)
     img2 = cv2.imread(path2)
-    # img1 = aver(img1)
-    # img2 = aver(img2)
     hash1 = dHash(img1)
     hash2 = dHash(img2)
     return cmpHash(hash1, hash2)
